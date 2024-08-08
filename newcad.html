@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cadastro</title>
+	<link rel="stylesheet" type="text/css" href="newcad.css">
+</head>
+<body>
+	<?php
+	$tit = filter_input(INPUT_POST, "titulo");
+	$subtit = filter_input(INPUT_POST, "subtitulo");
+	$not = filter_input(INPUT_POST, "noticia");
+
+	$con = mysqli_connect("localhost", "root", "vertrigo","sistemaportal");
+
+	$cad = "insert into noticiasgerais (titulo,subtitulo,noticia) values ('$tit','$subtit','$not')";
+
+	$exec = mysqli_query($con,$cad);
+
+	echo "Cadastrado com sucesso!";
+	?><br>
+	<a href="pag.php" id="btnvoltar">Voltar</a>
+</body>
+</html>
+

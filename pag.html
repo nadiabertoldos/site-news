@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notícias</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="pag.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <?php
+    $con = mysqli_connect("localhost", "root", "vertrigo","sistemaportal");
+  ?>
+	<header >
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#" style="color: #A6E6AB;">Nóticias <span class="sr-only">(atual)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" >Parcerias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="cad.php" >Cadastrar notícias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" >Entretenimento</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #A6E6AB;">Mais</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown10">
+                <a class="dropdown-item"  data-toggle="modal" data-target="#assinar" style="cursor: pointer;">Assinar</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+		<div id="logo"></div>
+    <!--<div>
+        
+    </div> -->
+	</header> 
+
+	<div id="canalVendas">
+    <div id="itens">
+      <p style=" font-weight:bold;font-family: arial;">Patrocinado</p>
+
+      <img src="img/itemUm.png" class="img" style="width:45%">
+      <img src="img/itemDois.png"  class="img"style="width:45%">
+      <img src="img/itemTres.png"  class="img"style="width:45%">
+      <img src="img/itemQuatro.png"class="img"  style="width:45%">
+      <img src="img/itemCinco.png" class="img" style="width:45%">
+      <img src="img/itemSeis.png" class="img" style="width:45%">
+		</div>
+	</div>
+
+	<div id="ultimasNoticias">		
+   
+    <div class="card mb-3" style="max-width: 100%;" >
+	     <?php
+		      $busca = "select * from noticiasgerais order by id desc limit 5";
+		      $exec = mysqli_query($con, $busca);
+		      $linhas = mysqli_num_rows($exec);
+
+		      for($i=0; $i < $linhas;$i++){
+		        $coluna = mysqli_fetch_array($exec);
+		        $tit = $coluna["titulo"];
+		        $subtit = $coluna["subtitulo"];
+		        $not = $coluna["noticia"]; 
+	    ?>
+     <div class="row no-gutters">
+     	<div class="col-md-2">
+          
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo "$tit";?></h5>
+            <h6 class="card-title"><?php echo "$tit";?></h6>
+            <p class="card-text" style=" text-align: justify;"><?php echo "$not";?></p>
+          </div>
+        </div>
+      </div>
+     
+         <?php
+      } 
+    ?>
+
+    </div>
+</div>
+
+ 
+	<div id="propagandas">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/um.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/dois.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="img/tres.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+	</div>
+
+ <div id="entretenimento">
+    <div class="conteudo">
+      <p>Entretenimento</p>
+      <h7>Quem sai na próxima terça-feira?</h7>
+      <div class="column" align="left">
+        <fieldset class="check-image">
+          <label for="checkbox">
+            <input type="radio" name="like" id="opU">
+            <img src="img/bocarosa.jpg" style="width:45%">
+            <p>Bianca Andrade</p>
+            <progress id="porU" value="" max="100"></progress>
+          </label>
+        </fieldset>
+      </div>
+      <div class="column" align="left">
+        <fieldset class="check-image">
+          <label for="checkbox">
+            <input type="radio" name="like" id="opD">
+            <img src="img/prior.jpg"  style="width:45%">
+            <p>Felipe Prior</p>
+            <progress id="porD" value="" max="100"></progress>
+          </label>
+        </fieldset>
+      </div>
+      <div class="column" align="left">
+        <fieldset class="check-image">
+          <label for="checkbox">
+            <input type="radio" name="like" id="opT">
+            <img src="img/flay.jpg"  style="width:45%">
+            <p>Flayslane</p>
+            <progress id="porT"value="" max="100" id="porU"></progress>
+          </label>
+        </fieldset>
+      </div>
+      <a id="votar" class="btn btn-primary" style="background-color: #A6E6AB; border-color: #A6E6AB">Votar</a>
+    </div>
+ </div>
+<!--modal-->
+ <div class="modal fade" id="assinar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Entrar como assinante!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <center><div class="modal-body">
+        <form action="registro.php" method="POST">
+          <p><input type="text" name="usuario" placeholder="Usuário"></p>
+          <p><input type="password" name="senha" placeholder="Senha"></p>
+          <p><input type="submit" value="Entrar"></p>
+        </form>
+      </div></center>
+      <div class="modal-footer">
+       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+  
+    
+<footer class="page-footer font-small ">
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script src="votacao.js"></script>
+
+  <div class="footer-copyright text-center py-3" style=" color: black;">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/" style="text-decoration-line: none; color: white;"> NTjornal.com</a>
+  </div>
+</footer>
+</html>
